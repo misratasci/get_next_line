@@ -6,14 +6,13 @@
 /*   By: mitasci <mitasci@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/28 17:31:10 by mitasci           #+#    #+#             */
-/*   Updated: 2023/12/28 17:33:58 by mitasci          ###   ########.fr       */
+/*   Updated: 2023/12/28 18:14:48 by mitasci          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
 
-# include <unistd.h>
-# include <stdlib.h>
+char	*get_next_line(int fd);
 
 #endif
