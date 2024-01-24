@@ -6,7 +6,7 @@
 /*   By: mitasci <mitasci@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/28 17:30:31 by mitasci           #+#    #+#             */
-/*   Updated: 2024/01/24 13:09:44 by mitasci          ###   ########.fr       */
+/*   Updated: 2024/01/24 13:47:58 by mitasci          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,13 @@ char	*get_next_line(int fd)
 		buffer_count++;
 	}
 	next_line = get_line(buffer);
-	//printf("%s\n", next_line);
 	if (next_line)
 		return (next_line);
 	else
 	{
 		buffer = get_next_buffer(fd);
 		buffer_count++;
+		return (ft_strjoin(next_line, get_line(buffer)));
 	}
 	return NULL;
 }

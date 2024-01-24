@@ -6,7 +6,7 @@
 /*   By: mitasci <mitasci@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/28 17:30:58 by mitasci           #+#    #+#             */
-/*   Updated: 2024/01/24 13:11:55 by mitasci          ###   ########.fr       */
+/*   Updated: 2024/01/24 13:45:32 by mitasci          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,4 +68,38 @@ char	*get_line(char *b)
 	s = write_until_ind(b, prev_ind, nl_ind);
 	prev_ind = nl_ind;
 	return (s);
+}
+
+static size_t	strlength(const char *s)
+{
+	size_t	i;
+
+	i = 0;
+	while (s[i])
+		i += 1;
+	return (i);
+}
+
+char	*ft_strjoin(char const *s1, char const *s2)
+{
+	char	*str;
+	size_t	i;
+
+	str = (char *)malloc(strlength(s1) + strlength(s2) + 1);
+	if (!str)
+		return (NULL);
+	i = 0;
+	while (i < strlength(s1))
+	{
+		str[i] = s1[i];
+		i += 1;
+	}
+	i = 0;
+	while (i < strlength(s2))
+	{
+		str[strlength(s1) + i] = s2[i];
+		i += 1;
+	}
+	str[strlength(s1) + i] = 0;
+	return (str);
 }
