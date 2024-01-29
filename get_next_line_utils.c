@@ -6,7 +6,7 @@
 /*   By: mitasci <mitasci@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/28 17:30:58 by mitasci           #+#    #+#             */
-/*   Updated: 2024/01/24 13:45:32 by mitasci          ###   ########.fr       */
+/*   Updated: 2024/01/29 13:43:01 by mitasci          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ char	*get_next_buffer(int fd)
 	if (!buffer)
 		return (NULL);
 	l += read(fd, buffer, BUFFER_SIZE);
-	l = l + 1;
+	l = l + 1; //bu l yi sonradan kullanırsın diye koydun kullanmazsan sil l'siz yaz
 	return (buffer);
 }
 
@@ -36,6 +36,22 @@ int	get_nl_index(char *s)
 		i++;
 	}
 	return (-1);
+}
+
+int	count_nls(char *b)
+{
+	int	count;
+	int	i;
+	
+	count = 0;
+	i = 0;
+	while (b[i])
+	{
+		if (b[i] == '\n')
+			count++;
+		i++;
+	}
+	return (count);
 }
 
 char	*write_until_ind(char *b, int start, int ind)
@@ -56,12 +72,14 @@ char	*write_until_ind(char *b, int start, int ind)
 	return (s);
 }
 
-char	*get_line(char *b)
+char	*get_line(char *b, int new_buffer)
 {
 	static int	prev_ind;
 	int			nl_ind;
 	char		*s;
 	
+	if (new_buffer)
+		prev_ind = 0;
 	nl_ind = get_nl_index(b);
 	if (nl_ind == -1)
 		nl_ind = BUFFER_SIZE;
