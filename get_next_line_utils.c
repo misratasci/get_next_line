@@ -6,7 +6,7 @@
 /*   By: mitasci <mitasci@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/28 17:30:58 by mitasci           #+#    #+#             */
-/*   Updated: 2024/01/30 16:13:23 by mitasci          ###   ########.fr       */
+/*   Updated: 2024/01/30 17:13:35 by mitasci          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ char	*get_next_buffer(int fd)
 	void	*buffer;
 	size_t	l;
 
+	if (fd < 0)
+		return (NULL);
 	buffer = (char *)malloc((BUFFER_SIZE + 1) * sizeof(char));
 	if (!buffer)
 		return (NULL);
@@ -43,7 +45,7 @@ int	count_nls(char *b)
 {
 	int	count;
 	int	i;
-	
+
 	count = 0;
 	i = 0;
 	while (b[i])
@@ -78,7 +80,7 @@ char	*get_line(char *b, int new_buffer)
 	static int	prev_ind;
 	int			nl_ind;
 	char		*s;
-	
+
 	if (new_buffer)
 		prev_ind = 0;
 	nl_ind = get_nl_index(b);
