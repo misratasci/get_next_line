@@ -6,7 +6,7 @@
 /*   By: mitasci <mitasci@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/28 17:30:58 by mitasci           #+#    #+#             */
-/*   Updated: 2024/01/29 13:43:01 by mitasci          ###   ########.fr       */
+/*   Updated: 2024/01/30 16:13:23 by mitasci          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,15 @@
 
 char	*get_next_buffer(int fd)
 {
-	void			*buffer;
-	static size_t	l;
+	void	*buffer;
+	size_t	l;
 
 	buffer = (char *)malloc((BUFFER_SIZE + 1) * sizeof(char));
 	if (!buffer)
 		return (NULL);
-	l += read(fd, buffer, BUFFER_SIZE);
-	l = l + 1; //bu l yi sonradan kullanırsın diye koydun kullanmazsan sil l'siz yaz
+	l = read(fd, buffer, BUFFER_SIZE);
+	if (l == 0)
+		return (NULL);
 	return (buffer);
 }
 
