@@ -6,7 +6,7 @@
 /*   By: mitasci <mitasci@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/28 17:30:58 by mitasci           #+#    #+#             */
-/*   Updated: 2024/01/30 17:13:35 by mitasci          ###   ########.fr       */
+/*   Updated: 2024/01/31 18:47:42 by mitasci          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 char	*get_next_buffer(int fd)
 {
-	void	*buffer;
+	char	*buffer;
 	size_t	l;
 
 	if (fd < 0)
@@ -23,19 +23,21 @@ char	*get_next_buffer(int fd)
 	if (!buffer)
 		return (NULL);
 	l = read(fd, buffer, BUFFER_SIZE);
+	buffer[l] = '\0';
 	if (l == 0)
 		return (NULL);
 	return (buffer);
 }
 
-int	get_nl_index(char *s)
+int	get_first_nl_index(char *s)
 {
-	static int	i;
+	int	i;
 
+	i = 0
 	while (s[i])
 	{
 		if (s[i] == '\n')
-			return (++i);
+			return (i);
 		i++;
 	}
 	return (-1);
@@ -57,37 +59,33 @@ int	count_nls(char *b)
 	return (count);
 }
 
-char	*write_until_ind(char *b, int start, int ind)
+char	*write_until_ind(char *b, int ind)
 {
 	char	*s;
 	int		i;
 
-	s = (char *)malloc((ind + 1 - start) * sizeof(char));
+	s = (char *)malloc((ind + 1) * sizeof(char));
 	if (!s)
 		return (NULL);
 	i = 0;
-	while (start < ind)
+	while (i < ind)
 	{
-		s[i] = b[start];
-		start++;
+		s[i] = b[i];
 		i++;
 	}
+	s[i] = '\0';
 	return (s);
 }
 
-char	*get_line(char *b, int new_buffer)
+char	*get_line(char *b)
 {
-	static int	prev_ind;
 	int			nl_ind;
 	char		*s;
 
-	if (new_buffer)
-		prev_ind = 0;
 	nl_ind = get_nl_index(b);
 	if (nl_ind == -1)
 		nl_ind = BUFFER_SIZE;
-	s = write_until_ind(b, prev_ind, nl_ind);
-	prev_ind = nl_ind;
+	s = write_until_ind(b, nl_ind);
 	return (s);
 }
 
@@ -95,13 +93,15 @@ static size_t	strlength(const char *s)
 {
 	size_t	i;
 
+	if (!s)
+		return (0);
 	i = 0;
 	while (s[i])
 		i += 1;
 	return (i);
 }
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_strjoin(char *s1, char *s2)
 {
 	char	*str;
 	size_t	i;
@@ -122,5 +122,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 		i += 1;
 	}
 	str[strlength(s1) + i] = 0;
+	free(s1);
+	free(s2);
 	return (str);
 }

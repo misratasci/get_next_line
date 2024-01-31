@@ -6,7 +6,7 @@
 /*   By: mitasci <mitasci@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/28 17:31:10 by mitasci           #+#    #+#             */
-/*   Updated: 2024/01/30 16:53:54 by mitasci          ###   ########.fr       */
+/*   Updated: 2024/01/31 18:47:55 by mitasci          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,10 @@
 
 char	*get_next_line(int fd);
 int		get_nl_index(char *s);
-char	*write_until_ind(char *b, int start, int ind);
-char	*get_line(char *b, int new_buffer);
+char	*write_until_ind(char *b, int ind);
+char	*get_line(char *b);
 char	*get_next_buffer(int fd);
-char	*ft_strjoin(char const *s1, char const *s2);
+char	*ft_strjoin(char *s1, char *s2);
 int		count_nls(char *b);
 
 #endif
