@@ -6,7 +6,7 @@
 /*   By: mitasci <mitasci@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/28 17:30:31 by mitasci           #+#    #+#             */
-/*   Updated: 2024/02/03 23:17:47 by mitasci          ###   ########.fr       */
+/*   Updated: 2024/02/03 23:46:46 by mitasci          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,15 @@ char	*get_next_line(int fd)
 {
 	static char	*saved;
 	char		*next_line;
+	char		*next_buffer;
 	
 	if (BUFFER_SIZE <= 0)
 		return (NULL);
 	
-	while (count_nls(saved) == 0)
+	while (count_nls(saved) == 0 && next_buffer)
 	{	
-		saved = ft_strjoin(saved, get_next_buffer(fd));
+		next_buffer = get_next_buffer(fd);
+		saved = ft_strjoin(saved, next_buffer);
 		if (!saved)
 			return (NULL);
 	}
@@ -35,15 +37,16 @@ char	*get_next_line(int fd)
 	//printf("sonraki %s\n", saved);
 	return (next_line);
 }
+/*
+int main()
+{
+	int fd = open("a.txt", O_RDONLY);
+	int i = 0;
 
-// int main()
-// {
-// 	int fd = open("get_next_line.c", O_RDONLY);
-// 	int i = 0;
+	while (i++ < 1)
+	{
 
-// 	while (i++ < 40)
-// 	{
-
-// 		printf("%s", get_next_line(fd));
-// 	}
-// }
+		printf("%s", get_next_line(fd));
+	}
+}
+*/

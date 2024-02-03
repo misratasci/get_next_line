@@ -6,7 +6,7 @@
 /*   By: mitasci <mitasci@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/28 17:30:58 by mitasci           #+#    #+#             */
-/*   Updated: 2024/02/03 23:17:39 by mitasci          ###   ########.fr       */
+/*   Updated: 2024/02/03 23:46:26 by mitasci          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	get_line_length(char *s)
 			return (++i);
 		i++;
 	}
-	return (-1);
+	return (i);
 }
 
 int	count_nls(char *b)
@@ -65,6 +65,8 @@ char	*write_until_ind(char *b, int start, int ind)
 	char	*s;
 	int		i;
 
+	if (start >= ind)
+		return (NULL);
 	s = (char *)malloc((ind + 2 - start) * sizeof(char));
 	if (!s)
 		return (NULL);
@@ -85,8 +87,6 @@ char	*get_line(char *b)
 	char		*s;
 
 	nl_ind = get_line_length(b);
-	if (nl_ind == -1)
-		nl_ind = BUFFER_SIZE;
 	s = write_until_ind(b, 0, nl_ind);
 	return (s);
 }
@@ -110,6 +110,7 @@ char	*get_after_line(char *b)
 
 	nl_ind = get_line_length(b);
 	s = write_until_ind(b, nl_ind, strlength(b));
+	free(b);
 	return (s);
 }
 
