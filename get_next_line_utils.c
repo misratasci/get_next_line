@@ -6,7 +6,7 @@
 /*   By: mitasci <mitasci@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/28 17:30:58 by mitasci           #+#    #+#             */
-/*   Updated: 2024/02/03 23:46:26 by mitasci          ###   ########.fr       */
+/*   Updated: 2024/02/03 23:54:27 by mitasci          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ char	*write_until_ind(char *b, int start, int ind)
 		start++;
 		i++;
 	}
-	s[i] = '\0';	
+	s[i] = '\0';
 	return (s);
 }
 

@@ -6,7 +6,7 @@
 /*   By: mitasci <mitasci@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/28 17:30:31 by mitasci           #+#    #+#             */
-/*   Updated: 2024/02/03 23:46:46 by mitasci          ###   ########.fr       */
+/*   Updated: 2024/02/03 23:52:45 by mitasci          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ char	*get_next_line(int fd)
 	//printf("sonraki %s\n", saved);
 	return (next_line);
 }
-/*
+
 int main()
 {
 	int fd = open("a.txt", O_RDONLY);
@@ -49,4 +49,3 @@ int main()
 		printf("%s", get_next_line(fd));
 	}
 }
-*/
