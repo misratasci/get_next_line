@@ -6,7 +6,7 @@
 /*   By: mitasci <mitasci@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/28 17:30:58 by mitasci           #+#    #+#             */
-/*   Updated: 2024/02/03 23:54:27 by mitasci          ###   ########.fr       */
+/*   Updated: 2024/02/05 18:49:52 by mitasci          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,10 @@ char	*get_next_buffer(int fd)
 	l = read(fd, buffer, BUFFER_SIZE);
 	buffer[l] = '\0';
 	if (l == 0 || l == -1)
+	{
+		free(buffer);
 		return (NULL);
+	}
 	return (buffer);
 }
 
@@ -46,9 +49,8 @@ int	count_nls(char *b)
 	int	count;
 	int	i;
 
-	if (!b) {
+	if (!b)
 		return (0);
-	}
 	count = 0;
 	i = 0;
 	while (b[i])
@@ -81,7 +83,7 @@ char	*write_until_ind(char *b, int start, int ind)
 	return (s);
 }
 
-char	*get_line(char *b)
+char	*get_until_nl(char *b)
 {
 	int			nl_ind;
 	char		*s;
@@ -120,20 +122,19 @@ char	*ft_strjoin(char *s1, char *s2)
 	size_t	i;
 
 	str = (char *)malloc(strlength(s1) + strlength(s2) + 1);
-	if (!str || (!s1 && !s2))
+	if (!str)
 		return (NULL);
-	i = 0;
-	while (i < strlength(s1))
+	if (!s1 && !s2)
 	{
+		free(str);
+		return (NULL);
+	}
+	i = -1;
+	while (++i < strlength(s1))
 		str[i] = s1[i];
-		i += 1;
-	}
-	i = 0;
-	while (i < strlength(s2))
-	{
+	i = -1;
+	while (++i < strlength(s2))
 		str[strlength(s1) + i] = s2[i];
-		i += 1;
-	}
 	str[strlength(s1) + i] = 0;
 	if (s1)
 		free(s1);

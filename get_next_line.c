@@ -6,7 +6,7 @@
 /*   By: mitasci <mitasci@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/28 17:30:31 by mitasci           #+#    #+#             */
-/*   Updated: 2024/02/03 23:52:45 by mitasci          ###   ########.fr       */
+/*   Updated: 2024/02/05 15:01:25 by mitasci          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,15 +29,18 @@ char	*get_next_line(int fd)
 		next_buffer = get_next_buffer(fd);
 		saved = ft_strjoin(saved, next_buffer);
 		if (!saved)
+		{
+			free(next_buffer);
 			return (NULL);
+		}
 	}
-	next_line = get_line(saved);
+	next_line = get_until_nl(saved);
 	//printf("önceki %s\n", saved);
 	saved = get_after_line(saved);
 	//printf("sonraki %s\n", saved);
 	return (next_line);
 }
-
+/*
 int main()
 {
 	int fd = open("a.txt", O_RDONLY);
@@ -45,7 +48,7 @@ int main()
 
 	while (i++ < 1)
 	{
-
 		printf("%s", get_next_line(fd));
 	}
 }
+*/
