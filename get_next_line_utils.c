@@ -6,7 +6,7 @@
 /*   By: mitasci <mitasci@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/28 17:30:58 by mitasci           #+#    #+#             */
-/*   Updated: 2024/02/06 16:24:00 by mitasci          ###   ########.fr       */
+/*   Updated: 2024/02/06 16:36:44 by mitasci          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int	count_nls(char *b)
 
 	count = 0;
 	i = 0;
-	while (b[i] && b)
+	while (b && b[i])
 	{
 		if (b[i] == '\n')
 			count++;
