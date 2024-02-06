@@ -6,7 +6,7 @@
 /*   By: mitasci <mitasci@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/28 17:30:31 by mitasci           #+#    #+#             */
-/*   Updated: 2024/02/05 15:01:25 by mitasci          ###   ########.fr       */
+/*   Updated: 2024/02/06 15:59:21 by mitasci          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ char	*get_next_line(int fd)
 	if (BUFFER_SIZE <= 0)
 		return (NULL);
 	
-	while (count_nls(saved) == 0 && next_buffer)
+	while (1)
 	{	
 		next_buffer = get_next_buffer(fd);
 		saved = ft_strjoin(saved, next_buffer);
@@ -33,6 +33,8 @@ char	*get_next_line(int fd)
 			free(next_buffer);
 			return (NULL);
 		}
+		if (!next_buffer || count_nls(next_buffer) != 0)
+			break ;
 	}
 	next_line = get_until_nl(saved);
 	//printf("önceki %s\n", saved);
