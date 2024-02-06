@@ -6,7 +6,7 @@
 /*   By: mitasci <mitasci@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/28 17:30:58 by mitasci           #+#    #+#             */
-/*   Updated: 2024/02/06 16:36:44 by mitasci          ###   ########.fr       */
+/*   Updated: 2024/02/06 17:03:12 by mitasci          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ char	*get_next_buffer(int fd)
 	if (!buffer)
 		return (NULL);
 	l = read(fd, buffer, BUFFER_SIZE);
-	if (l == 0 || l == -1)
+	if (l == -1)
 	{
 		free(buffer);
 		return (NULL);
