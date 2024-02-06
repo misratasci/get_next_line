@@ -6,7 +6,7 @@
 /*   By: mitasci <mitasci@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/28 17:30:58 by mitasci           #+#    #+#             */
-/*   Updated: 2024/02/06 17:03:12 by mitasci          ###   ########.fr       */
+/*   Updated: 2024/02/06 17:15:18 by mitasci          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ char	*get_next_buffer(int fd)
 	char	*buffer;
 	int		l;
 
+	if (BUFFER_SIZE <= 0)
+		return (NULL);
 	buffer = (char *)malloc((BUFFER_SIZE + 1) * sizeof(char));
 	if (!buffer)
 		return (NULL);
