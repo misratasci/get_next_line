@@ -6,7 +6,7 @@
 /*   By: mitasci <mitasci@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/28 17:31:10 by mitasci           #+#    #+#             */
-/*   Updated: 2024/02/05 14:04:47 by mitasci          ###   ########.fr       */
+/*   Updated: 2024/02/07 14:05:45 by mitasci          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@
 
 # include <unistd.h>
 # include <stdlib.h>
-# include <stdio.h> //sil
 
 char	*get_next_line(int fd);
 int		get_line_length(char *s);
